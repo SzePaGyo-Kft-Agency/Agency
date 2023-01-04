@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\ParticipateController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +18,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/api/events', [EventController::class, 'index']);
+Route::get('/api/event/{id}', [EventController::class, 'show']);
+Route::post('/api/event/new', [EventController::class, 'store']);
+Route::delete('/api/event/{id}', [EventController::class, 'destroy']);
+Route::put('/api/event/{id}', [EventController::class, 'update']);
+
+Route::get('/api/participates', [ParticipateController::class, 'index']);
+Route::get('/api/participate/{user_id}/{event_id}', [ParticipateController::class, 'show']);
+Route::post('/api/participate/new', [ParticipateController::class, 'store']);
+Route::delete('/api/participate/{user_id}/{event_id}', [ParticipateController::class, 'destroy']);
+Route::put('/api/participate/{user_id}/{event_id}', [ParticipateController::class, 'update']);
