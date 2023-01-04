@@ -18,7 +18,7 @@ return new class extends Migration
             $table->primary(['user_id', 'event_id']);
             $table->foreignId('user_id')->references('user_id')->on('users');
             $table->foreignId('event_id')->references('event_id')->on('events');
-            $table->boolean('present')->default(1);
+            $table->boolean('present')->default(0);
             $table->timestamps();
         });
         Participate::create(['user_id' => 1, 'event_id' => 2, 'present' => 1]);
