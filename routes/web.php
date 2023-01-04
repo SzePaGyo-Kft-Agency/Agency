@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AgencyController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/agency',[AgencyController::class, 'index']);
+Route::get('/agency/{id}',[AgencyController::class, 'show']);
+Route::delete('/agency/{id}',[AgencyController::class, 'delete']);
+Route::post('/agency/create',[AgencyController::class, 'store']);
+Route::put('/agency/{id}',[AgencyController::class, 'update']);

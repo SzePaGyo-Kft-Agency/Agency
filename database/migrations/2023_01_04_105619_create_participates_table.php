@@ -15,10 +15,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('participates', function (Blueprint $table) {
-            $table->id(['user_id', 'event_id']);
-            $table->foreignId('user_id')->references('users')->on('users');
+            $table->primary(['user_id', 'event_id']);
+            $table->foreignId('user_id')->references('user_id')->on('users');
             $table->foreignId('event_id')->references('event_id')->on('events');
-            $table->boolean('present');
+            $table->tinyint('present');
             $table->timestamps();
         });
         Participate::create(['user_id' => 1, 'event_id' => 2, 'present' => 1]);
