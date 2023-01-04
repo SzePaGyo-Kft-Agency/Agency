@@ -36,5 +36,6 @@ class AgencyController extends Controller
         $agency->name = $request->name;
         $agency->country = $request->country;
         $agency->type = $request->type;
+        $agency->save();
     }
 }

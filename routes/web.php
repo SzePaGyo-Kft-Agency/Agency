@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AgencyController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,6 +28,12 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::get('/agency',[AgencyController::class, 'index']);
+Route::get('/agency/{id}',[AgencyController::class, 'show']);
+Route::delete('/agency/{id}',[AgencyController::class, 'destroy']);
+Route::post('/agency/new',[AgencyController::class, 'store']);
+Route::put('/agency/{id}',[AgencyController::class, 'update']);
 
 
 
