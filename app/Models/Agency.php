@@ -10,6 +10,7 @@ class Agency extends Model
     use HasFactory;
 
     protected $primaryKey = 'agency_id';
+    public $timestamps = false;
 
     protected $fillable = [
         'name',
