@@ -4,6 +4,7 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\ParticipateController;
 use App\Http\Controllers\AgencyController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -48,6 +49,13 @@ Route::get('/api/participate/{user_id}/{event_id}', [ParticipateController::clas
 Route::post('/api/participate/new', [ParticipateController::class, 'store']);
 Route::delete('/api/participate/{user_id}/{event_id}', [ParticipateController::class, 'destroy']);
 Route::put('/api/participate/{user_id}/{event_id}', [ParticipateController::class, 'update']);
+
+//user
+Route::get('api/users',[UserController::class,'index']);
+Route::get('api/users/{id}',[UserController::class,'show']);
+Route::post('api/users',[UserController::class,'store']);
+Route::put('api/users/{id}',[UserController::class,'update']);
+Route::delete('api/users/{id}',[UserController::class,'destroy']);
 
 
 require __DIR__ . '/auth.php';
