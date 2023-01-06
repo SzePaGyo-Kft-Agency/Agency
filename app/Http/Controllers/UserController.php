@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator as FacadesValidator;
 
@@ -37,12 +38,37 @@ class UserController extends Controller
         $user->vip=$request->vip;
         $user->save();
     }
-    public function updateName(Request $request,$id){
-        $validator=Validator::make($request->all(),["name"=>array('string','required','regex:/(^[A-Z][a-z]++[A-Z][a-z]+')]);
-        if($validator->fails()){
-            return response()->json(["message"=>$validator->errors()->all()],400);
+    /*
+    public function updateName(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            "name" => array( 'string','required', 'regex:/(^[A-Z][a-z]+ + [A-Z][a-z]+')
+        ]);
+        if ($validator->fails()) {
+            return response()->json(["message" => $validator->errors()->all()], 400);
         }
-        $user=User::where("id",$id)->update(["name"=>Hash::make($request->name),]);
-        return response()->json(["user"=>$user]);
+        $user = User::where("id", $id)->update([
+            "name" => Hash::make($request->name),
+        ]);
+        return response()->json(["user" => $user]);
     }
+*/
+    public function justVip(){
+        $vipUsers = DB::table('users')
+    ->select('name', 'email')
+    ->where('vip', true)
+    ->get();
+    }
+
+
+    //Mondd le a mai napra tervezett eseményeken való részvételedet! (present : = False)
+
+    public function dontgotoEvent(){
+        $dontgo = DB::table('users as u')
+          ->join('participates as p' ,'u.id','=','p.user_id') 
+          ->join('events as e' ,'e.event_id','=','p.event_id') 
+          ->update(['present' => False]);
+  
+    }
+
 }

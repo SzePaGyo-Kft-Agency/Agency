@@ -30,9 +30,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    //mai esemény lemondása bejelentkezett felhasználónak
+    //Route::get('/profile/dontgo',[UserController::class,'dontgotoEvent']);
 });
 Route::middleware( ['admin'])->group(function () {
     Route::apiResource('/users', UserController::class);
+    //vipes felhasználók lekérdezése
+    //Route::get('user/vip',[UserController::class], 'justVip');
 });
 
 Route::get('/agency', [AgencyController::class, 'index']);
@@ -60,5 +64,8 @@ Route::post('api/users',[UserController::class,'store']);
 Route::put('api/users/{id}',[UserController::class,'update']);
 Route::delete('api/users/{id}',[UserController::class,'destroy']);
 
+//lekédezések
+Route::get('user/vip',[UserController::class], 'justVip');
+Route::get('/profile/dontgo',[UserController::class,'dontgotoEvent']);
 
 require __DIR__ . '/auth.php';
