@@ -31,6 +31,9 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+Route::middleware( ['admin'])->group(function () {
+    Route::apiResource('/users', UserController::class);
+});
 
 Route::get('/agency', [AgencyController::class, 'index']);
 Route::get('/agency/{id}', [AgencyController::class, 'show']);
