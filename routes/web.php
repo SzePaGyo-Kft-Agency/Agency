@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
 Route::get('/dashboard', function () {
@@ -33,10 +33,13 @@ Route::middleware('auth')->group(function () {
     //mai esemény lemondása bejelentkezett felhasználónak
     //Route::get('/profile/dontgo',[UserController::class,'dontgotoEvent']);
 });
-Route::middleware( ['admin'])->group(function () {
+Route::middleware(['admin'])->group(function () {
     Route::apiResource('/users', UserController::class);
     //vipes felhasználók lekérdezése
     //Route::get('user/vip',[UserController::class], 'justVip');
+});
+
+Route::middleware(['agency'])->group(function () {
 });
 
 Route::get('/agency', [AgencyController::class, 'index']);
@@ -58,15 +61,15 @@ Route::delete('/api/participate/{user_id}/{event_id}', [ParticipateController::c
 Route::put('/api/participate/{user_id}/{event_id}', [ParticipateController::class, 'update']);
 
 //user
-Route::get('api/users',[UserController::class,'index']);
-Route::get('api/users/{id}',[UserController::class,'show']);
-Route::post('api/users',[UserController::class,'store']);
-Route::put('api/users/{id}',[UserController::class,'update']);
-Route::delete('api/users/{id}',[UserController::class,'destroy']);
+Route::get('api/users', [UserController::class, 'index']);
+Route::get('api/users/{id}', [UserController::class, 'show']);
+Route::post('api/users', [UserController::class, 'store']);
+Route::put('api/users/{id}', [UserController::class, 'update']);
+Route::delete('api/users/{id}', [UserController::class, 'destroy']);
 
 //lekédezések
-Route::get('user/vip',[UserController::class], 'justVip');
-Route::get('/profile/dontgo',[UserController::class,'dontgotoEvent']);
+Route::get('user/vip', [UserController::class], 'justVip');
+Route::get('/profile/dontgo', [UserController::class, 'dontgotoEvent']);
 
 //halasztás
 Route::put('api/events/delay/{id}',[EventController::class, 'delay']);

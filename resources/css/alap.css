@@ -1,0 +1,35 @@
+/* alap css-reszponzív - mindegyik viewhez ezt fogjuk társítani azaz az 1-es és a 3-mas css-ben lévő reszponzivitás is itt lesz
+emiatt lesz a 2-es is reszponziv */
+main {
+    max-width: 800px;
+    margin: auto;
+    display: grid;
+    grid-template-areas: "h h h h h h h" "a a a a a as as" "f f f f f f f";
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+  }
+
+header {
+    padding-bottom: 10px;
+    grid-area: h;
+}
+
+article {
+    grid-area: a;
+}
+
+aside {
+    grid-area: as;
+}
+
+footer {
+    padding-top: 10px;
+    grid-area: f;
+}
+
+  @media (max-width: 600px) {
+    
+  }

@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->integer('permission')->default(1);
-            $table->boolean('vip')->default(0);
+            $table->boolean('vip')->default(1);
             $table->timestamps();
         });
 

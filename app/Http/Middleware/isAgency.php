@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class IsAdmin
+class isAgency
 {
     /**
      * Handle an incoming request.
@@ -20,6 +20,6 @@ class IsAdmin
         if (Auth::user() && Auth::user()->permission == 0) {
             return $next($request);
         }
-        return redirect('home')->with('error', 'You have not admin access');
+        return redirect('home')->with('error', 'You have not agency access');
     }
 }
