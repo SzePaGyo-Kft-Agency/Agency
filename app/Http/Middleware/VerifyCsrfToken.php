@@ -21,6 +21,9 @@ class VerifyCsrfToken extends Middleware
         "api/participate/new",
 
         "/agency/*",
-        "/agency/new"
+        "/agency/new",
+
+        'api/users',
+        'api/users/*'
     ];
 }
