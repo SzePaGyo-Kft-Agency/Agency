@@ -2,7 +2,7 @@
 class EsemenyAdminController{
 
     constructor(){
-
+        
     }
     
 

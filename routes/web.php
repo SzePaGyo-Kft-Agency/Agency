@@ -68,4 +68,7 @@ Route::delete('api/users/{id}',[UserController::class,'destroy']);
 Route::get('user/vip',[UserController::class], 'justVip');
 Route::get('/profile/dontgo',[UserController::class,'dontgotoEvent']);
 
+//halasztás
+Route::put('api/events/delay/{id}',[EventController::class, 'delay']);
+
 require __DIR__ . '/auth.php';

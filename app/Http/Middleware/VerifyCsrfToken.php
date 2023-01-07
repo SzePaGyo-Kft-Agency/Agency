@@ -24,6 +24,8 @@ class VerifyCsrfToken extends Middleware
         "/agency/new",
 
         'api/users',
-        'api/users/*'
+        'api/users/*',
+
+        'api/events/delay/*'
     ];
 }
